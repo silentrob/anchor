@@ -8,10 +8,11 @@
     "Mihai Tomescu <matomesc@gmail.com>"
   ],
   "dependencies": {
+    "findit": ">=0.1.2",
     "formidable": ">=1.0.6",
-    "restify": ">=0.5.4",
+    "md5": "^1.0.0",
     "node-static": ">=0.5.9",
-    "findit": ">=0.1.2"
+    "restify": ">=0.5.4"
   },
   "devDependencies": {
     "colors": ">=0.5.1",

@@ -15,18 +15,30 @@ var modes = [
 ];
  
 function runRsync(blocksize, callback) {
+
     var sync = rsync.createRSync('./test/files', blocksize);
+    
     var t0 = Date.now();
 
-    sync.checksum('/server.txt', function (err, results) {
+    sync.checksum('./files/server.txt', function (err, checksum) {
         if(err) { callback(err); }
-       
+        
         var t1 = Date.now();
-        sync.diff('/client.txt', results, function (err, diff) {
+        
+        
+
+        var obj = [{
+          path : './files/server.txt',
+          checksums: checksum
+          }
+        ]
+
+        sync.diff('./files/client.txt', obj, function (err, diff) {
             if(err) { callback(err); }
            
             var t2 = Date.now();
-            sync.sync('/server.txt', diff, function(err, synced) {
+            sync.sync('./files/server.txt', diff, function(err, synced) {
+           
                 if(err) { callback(err); }
  
                 var t3 = Date.now();
@@ -62,6 +74,7 @@ for(var level = 0; level < numlevels; level++) {
       tests.addBatch({
         'file test': {
           topic: function() {
+
             var self = this
               , cur = lvl+m
               , tot = numlevels*numModes;
@@ -75,7 +88,7 @@ for(var level = 0; level < numlevels; level++) {
               
               helper.newFile(m, function(err) {
                 if (err) { throw err; }
-                   
+
                 runRsync(blk, self.callback);
               });
             });

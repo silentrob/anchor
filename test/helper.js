@@ -43,7 +43,8 @@ Helper = function() {
       './files/client.txt'
     , './files/server.txt'  
   ];
-  this.levels = populatelevels();
+  // this.levels = populatelevels();
+  this.levels =  [1,2,4,8,16,32,64];
 };
 
 Helper.prototype = {
