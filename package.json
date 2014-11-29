@@ -1,20 +1,25 @@
 {
-    "name": "node-rsync"
-  , "version": "0.0.1"
-  , "description": "rsync implemented in node over http"
-  , "keywords": []
-  , "author": "Tolga Tezel <tolgatezel11@gmail.com>"
-  , "contributors": ["Mihai Tomescu <matomesc@gmail.com>"]
-  , "dependencies": {
-        "formidable": ">=1.0.6"
-      , "restify": ">=0.5.4"
-      , "node-static": ">=0.5.9"
-      , "findit": ">=0.1.2"
-    }
-  , "devDependencies": {
-        "vows": ">=0.5.13"
-      , "colors": ">=0.5.1"
-    }
-  , "main": "index"
-  , "engines": { "node": "0.5 || 0.6" }
+  "name": "node-rsync",
+  "version": "0.1.0",
+  "description": "rsync implemented in node over http",
+  "keywords": [],
+  "author": "Tolga Tezel <tolgatezel11@gmail.com>",
+  "contributors": [
+    "Mihai Tomescu <matomesc@gmail.com>"
+  ],
+  "dependencies": {
+    "formidable": ">=1.0.6",
+    "restify": ">=0.5.4",
+    "node-static": ">=0.5.9",
+    "findit": ">=0.1.2"
+  },
+  "devDependencies": {
+    "colors": ">=0.5.1",
+    "seq": "^0.3.5",
+    "vows": ">=0.5.13"
+  },
+  "main": "index",
+  "engines": {
+    "node": "0.5 || 0.6"
+  }
 }
