@@ -15,8 +15,8 @@ var modes = [
 ];
  
 function runRsync(blocksize, callback) {
-    var sync = rsync.createRSync('../lib/files', blocksize)
-      , t0 = Date.now();
+    var sync = rsync.createRSync('./test/files', blocksize);
+    var t0 = Date.now();
 
     sync.checksum('/server.txt', function (err, results) {
         if(err) { callback(err); }

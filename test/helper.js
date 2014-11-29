@@ -40,8 +40,8 @@ function populatelevels () {
 //
 Helper = function() {
   this.allow = [
-      '../lib/files/client.txt'
-    , '../lib/files/server.txt'  
+      './files/client.txt'
+    , './files/server.txt'  
   ];
   this.levels = populatelevels();
 };

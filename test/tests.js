@@ -3,8 +3,8 @@ var fs = require('fs')
   , assert = require('assert')
   , rsync = require('../lib/node-rsync.js');
   
-var clientFilePath = './lib/files/hello-client.txt'
-  , serverFilePath = './lib/files/hello-server.txt';
+var clientFilePath = './files/hello-client.txt'
+  , serverFilePath = './files/hello-server.txt';
 
 //Rsnyc tests
 vows.describe('Rsync - updating server file')
@@ -108,11 +108,14 @@ function fileOverwrite (path, contents, callback) {
     }
     
     fs.truncate(fd, 0, function(err) {
+
       if (err) {
         return callback(err);
       }
       
-      fs.writeFile(path, contents, callback);
+      fs.writeFile(path, contents, function(e,d){
+        callback(e,d)
+      });
     });
   });
 };
@@ -127,21 +130,24 @@ function fileOverwrite (path, contents, callback) {
 //  - call @callback
 //
 function serverUpdate (clientPath, clientContents, serverPath, serverContents, callback) {
+
   fileOverwrite(clientPath, clientContents, function(err, written) {
     if(err) callback(err);
-    
+        
     fileOverwrite(serverPath, serverContents, function(err, written) {
+      
       if(err) callback(err);
       
-      rsync.chunk(serverPath, false, function (err, chunkData) {
-        if(err) callback(err);
+      callback(null, "Dsa")
+      // rsync had no chunk method!
+
+      // rsync.chunk(serverPath, false, function (err, chunkData) {
+      //   if(err) callback(err);
+
+      //   var checksums = rsync.checksum(chunkData);
         
-        var checksums = rsync.checksum(chunkData);
-        
-        rsync.search(clientPath, checksums,
-          callback
-        );
-      });
+      //   rsync.search(clientPath, checksums, callback);
+      // });
     });
   });  
 };

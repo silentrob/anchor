@@ -2,4 +2,3 @@ support
 test
 examples
 *.sock
-npm-debug.log
